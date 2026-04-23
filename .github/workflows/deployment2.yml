@@ -1,0 +1,46 @@
+name: 3jobs_WorkFlow
+
+on:
+    push:
+        branches:
+            - main
+
+jobs:
+    lint:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Get Code
+              uses: actions/checkout@v3
+            - name: install_dependencies
+              run : npm ci
+            - name: run the lint code
+              run : npm run lint
+
+    test:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Get Code
+              uses: actions/checkout@v3
+            - name: install_dependencies
+              run : npm ci
+            - name: run the test code
+              run : npm run test
+
+    build:
+
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Get Code
+              uses: actions/checkout@v3
+            - name: install_dependencies
+              run : npm ci
+            - name: run the build code
+              run : npm run build
+            - name: Deploying
+              run : echo "Deploying ..."
+
+    
+    
